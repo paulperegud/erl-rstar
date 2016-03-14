@@ -181,15 +181,14 @@ split(Params, Node) ->
     case Node#geometry.value of
         #leaf{} ->
             G1 = G1Geo#geometry{value=#leaf{entries=GroupA}},
-            G2 = G2Geo#geometry{value=#leaf{entries=GroupB}};
-
+            G2 = G2Geo#geometry{value=#leaf{entries=GroupB}},
+            {G1, G2};
         #node{} ->
             G1 = G1Geo#geometry{value=#node{children=GroupA}},
-            G2 = G2Geo#geometry{value=#node{children=GroupB}}
-    end,
-
-    % Return the two new nodes
-    {G1, G2}.
+            G2 = G2Geo#geometry{value=#node{children=GroupB}},
+            {G1, G2}
+    end.
+    
 
 
 % ChooseSplitAxis
